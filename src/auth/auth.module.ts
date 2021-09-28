@@ -6,6 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStratergy } from './jwt.strategy';
 import { UserRepository } from 'src/user/user.repository';
+import { ForgetPassWordRepository } from './forget-password.repository';
 
 
 @Module({           
@@ -19,7 +20,7 @@ import { UserRepository } from 'src/user/user.repository';
         expiresIn: 3600,
       }
     }),
-    TypeOrmModule.forFeature([UserRepository])],                   
+    TypeOrmModule.forFeature([UserRepository,ForgetPassWordRepository])],                   
   providers: [AuthService, JwtStratergy],
   controllers: [AuthController],
 

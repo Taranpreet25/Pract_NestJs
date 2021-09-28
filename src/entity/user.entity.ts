@@ -68,5 +68,13 @@ export class User extends BaseEntity {
 
   @OneToMany(() => User, (user) => user.updatedBy2)
   users2: User[];
-  
+
 }
+
+
+
+
+
+
+
+
