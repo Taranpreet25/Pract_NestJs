@@ -39,7 +39,7 @@ export class AuthService {
     return this.userRepository.createUser(createUserDto);
   }
 
-  //why we not comparemhere hashed password mean where is salt
+  
   async signIn(
     authCredentialDto: AuthCredentialDto,
   ): Promise<{ accessToken: string }> {
@@ -150,7 +150,7 @@ export class AuthService {
     }
   }
 
-  async createUser(createUserDto: CreateUserDto, user:User): Promise<void> {
+  async createUser(createUserDto: CreateUserDto, user: User): Promise<void> {
     return this.userRepository.createNewUser(createUserDto, user);
   }
 }
