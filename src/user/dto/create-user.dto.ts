@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsUUID, Matches, MaxLength, MinLength } from "class-validator";
 import { PrimaryGeneratedColumn, Unique } from "typeorm";
 
 export class CreateUserDto{
@@ -36,6 +36,9 @@ export class CreateUserDto{
 
     @IsNotEmpty()
     role_id;
+
+    // @IsUUID()
+    created_by:string;
 
 
 

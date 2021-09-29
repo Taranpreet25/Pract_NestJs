@@ -12,7 +12,7 @@ import { ForgetPassWordRepository } from './forget-password.repository';
 @Module({           
   imports: [
 
-    // imp for jwt and passport methord
+    
     PassportModule.register({ defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret: 'topSecret51',
