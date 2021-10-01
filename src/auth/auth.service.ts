@@ -25,14 +25,21 @@ import { forget_password } from 'src/entity/forget-password.entity';
 import { ForgetPassWordRepository } from './forget-password.repository';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { NewPasswordDto } from './dto/new-password.dto';
+import { MailerService } from '@nestjs-modules/mailer';
+import * as config from 'config'
+
+
+const mailConfig = config.get('email');
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UserRepository)
+    public readonly mailerService: MailerService,
     private userRepository: UserRepository,
     private jwtService: JwtService,
     private forgetPasswordRepository: ForgetPassWordRepository,
+    
   ) {}
 
   async signUp(createUserDto: CreateUserDto): Promise<void> {
@@ -62,6 +69,7 @@ export class AuthService {
     return this.userRepository.getUser();
   }
 
+  
   async forgetPassword(forgetPasswordDto: ForgetPasswordDto) {
     const { email } = forgetPasswordDto;
     const user = await this.userRepository.findOne({ email });
@@ -89,6 +97,35 @@ export class AuthService {
     row.token = tokenhash;
     row.createTime = new Date();
     row.updateTime = new Date();
+
+
+    const mailOptions = {
+      // host: mailConfig.host,
+      // host:
+      from: mailConfig.user,
+      
+      to: email,
+      subject: 'Reset your password',
+      text: 'hello here the mail for reset password.',
+    };
+    console.log(mailConfig.host,mailConfig.user)
+
+    // this.mailerService.sendMail(mailOptions)
+      this.mailerService.sendMail({
+        to: "taranpreetsinghsaluja@gmail.com",
+        from: mailConfig.from,
+        subject: `Email Verification`,
+        text: "hello",
+        html: "hello",
+      })
+      .then((res) => {
+        console.log('res', res);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
+
+
 
     try {
       await row.save();

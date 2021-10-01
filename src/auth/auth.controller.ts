@@ -15,6 +15,7 @@ import { Role } from 'src/entity/role.entity';
 import { User } from 'src/entity/user.entity';
 import { UserRole } from 'src/enum/user-role.enum';
 import { Roles } from 'src/guard/role.decorator';
+import { RolesGuard } from 'src/guard/role.guard';
 import { SiteUrl } from 'src/site-url.decorator';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { AuthService } from './auth.service';
@@ -56,7 +57,7 @@ export class AuthController {
   }
 
   @Get()
-  @UseGuards(AuthGuard())
+  @UseGuards(AuthGuard(),RolesGuard)
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Get all accounts of user' })
   @ApiResponse({ status: 200, description: 'Api success' })
