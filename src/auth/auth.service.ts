@@ -26,10 +26,10 @@ import { ForgetPassWordRepository } from './forget-password.repository';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { NewPasswordDto } from './dto/new-password.dto';
 import { MailerService } from '@nestjs-modules/mailer';
-import * as config from 'config'
+// import * as config from 'config'
 
 
-const mailConfig = config.get('email');
+// const mailConfig = config.get('email');
 
 @Injectable()
 export class AuthService {
@@ -99,31 +99,31 @@ export class AuthService {
     row.updateTime = new Date();
 
 
-    const mailOptions = {
-      // host: mailConfig.host,
-      // host:
-      from: mailConfig.user,
+    // const mailOptions = {
+    //   // host: mailConfig.host,
+    //   // host:
+    //   from: mailConfig.user,
       
-      to: email,
-      subject: 'Reset your password',
-      text: 'hello here the mail for reset password.',
-    };
-    console.log(mailConfig.host,mailConfig.user)
+    //   to: email,
+    //   subject: 'Reset your password',
+    //   text: 'hello here the mail for reset password.',
+    // };
+    // console.log(mailConfig.host,mailConfig.user)
 
-    // this.mailerService.sendMail(mailOptions)
-      this.mailerService.sendMail({
-        to: "taranpreetsinghsaluja@gmail.com",
-        from: mailConfig.from,
-        subject: `Email Verification`,
-        text: "hello",
-        html: "hello",
-      })
-      .then((res) => {
-        console.log('res', res);
-      })
-      .catch((err) => {
-        console.log('err', err);
-      });
+    // // this.mailerService.sendMail(mailOptions)
+    //   this.mailerService.sendMail({
+    //     to: "taranpreetsinghsaluja@gmail.com",
+    //     from: mailConfig.from,
+    //     subject: `Email Verification`,
+    //     text: "hello",
+    //     html: "hello",
+    //   })
+    //   .then((res) => {
+    //     console.log('res', res);
+    //   })
+    //   .catch((err) => {
+    //     console.log('err', err);
+    //   });
 
 
 

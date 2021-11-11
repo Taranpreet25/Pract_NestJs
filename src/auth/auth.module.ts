@@ -7,26 +7,27 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStratergy } from './jwt.strategy';
 import { UserRepository } from 'src/user/user.repository';
 import { ForgetPassWordRepository } from './forget-password.repository';
-import { typeOrmConfig } from 'config/typeorm.config';
-import { MailerModule } from '@nestjs-modules/mailer';
-import * as config from 'config';
+// import { typeOrmConfig } from 'config/typeorm.config';
+// import { MailerModule } from '@nestjs-modules/mailer';
+// import * as config from 'config';
+// import { DepartmentRepository } from 'src/department/department.repository';
 
-const mailConfig = config.get('email');
+// const mailConfig = config.get('email');
 
 
 @Module({
   imports: [
     // TypeOrmModule.forRoot(typeOrmConfig),
-    MailerModule.forRoot({
-      transport: {
-        host: mailConfig.host,
-        port: mailConfig.port,
-        auth: {
-          user: mailConfig.user,
-          pass: mailConfig.pass,
-        },
-      },
-    }),
+    // MailerModule.forRoot({
+    //   transport: {
+    //     host: mailConfig.host,
+    //     port: mailConfig.port,
+    //     auth: {
+    //       user: mailConfig.user,
+    //       pass: mailConfig.pass,
+    //     },
+    //   },
+    // }),
 
 
     PassportModule.register({ defaultStrategy: 'jwt' }),
@@ -36,7 +37,7 @@ const mailConfig = config.get('email');
         expiresIn: 3600,
       },
     }),
-    TypeOrmModule.forFeature([UserRepository, ForgetPassWordRepository]),
+    TypeOrmModule.forFeature([UserRepository, ForgetPassWordRepository,]),
   ],
   providers: [AuthService, JwtStratergy],
   controllers: [AuthController],

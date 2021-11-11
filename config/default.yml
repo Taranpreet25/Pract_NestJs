@@ -6,16 +6,16 @@
 # my variables are ${myvar1} and ${myvar2}
 #
 
-server:
-  port: 3000
+# server:
+#   port: 3000
 
-db:
-  type: 'postgres'
-  port: 5432
-  username: 'postgres'
-  host: 'localhost'
-  database: 'pract'
-  password: 'postgres'
+# db:
+#   type: 'postgres'
+#   port: 5432
+#   username: 'postgres'
+#   host: 'localhost'
+#   database: 'pract'
+#   password: 'postgres'
   
 
 jwt:

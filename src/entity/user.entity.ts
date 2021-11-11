@@ -1,3 +1,4 @@
+// import { Depart } from 'src/entity/department.entity';
 import {
   BaseEntity,
   Column,
@@ -69,8 +70,21 @@ export class User extends BaseEntity {
   @OneToMany(() => User, (user) => user.updatedBy2)
   users2: User[];
 
-}
+  @Column("character varying", {
+		name: "profile_pic",
+		nullable: true,
+		length: 255,
+	})
+	profilePic: string | null;
 
+  // @Column('integer', { nullable: true })
+  // depart_id: number | null;
+
+  // @ManyToOne(() => Depart, (depart) => depart.user, { eager: true })
+  // @JoinColumn({ name: 'depart_id', referencedColumnName: 'id' })
+  // depart: Depart;
+
+}
 
 
 

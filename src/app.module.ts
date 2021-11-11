@@ -5,43 +5,44 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { RoleModule } from './role/role.module';
-import * as config from 'config';
+// import * as config from 'config';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { typeOrmConfig } from 'config/typeorm.config';
+// import { typeOrmConfig } from 'config/typeorm.config';
+// import { DepartmentModule } from './department/department.module';
 
-const mailConfig = config.get('email');
+// const mailConfig = config.get('email');
 
 @Module({
   imports: [
    
    
-     TypeOrmModule.forRoot(typeOrmConfig),
-    // TypeOrmModule.forRoot({
-    //   type:'postgres',
-    //   host:'localhost',
-    //   port:5432,
-    //   username:'postgres',
-    //   password:'postgres',
-    //   database:'pract',
-    //   autoLoadEntities:true,
-    //   synchronize:true,
+    //  TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forRoot({
+      type:'postgres',
+      host:'localhost',
+      port:5432,
+      username:'postgres',
+      password:'postgres',
+      database:'pract',
+      autoLoadEntities:true,
+      synchronize:true,
   
-    // }),
-    
-    MailerModule.forRoot({
-      transport: {
-        host: mailConfig.host,
-        port: mailConfig.port,
-        auth: {
-          user: mailConfig.user,
-          pass: mailConfig.pass,
-        },
-      },
     }),
     
+    // MailerModule.forRoot({
+    //   transport: {
+    //     host: mailConfig.host,
+    //     port: mailConfig.port,
+    //     auth: {
+    //       user: mailConfig.user,
+    //       pass: mailConfig.pass,
+    //     },
+    //   },
+    // }),
     
     
-   AuthModule, UserModule, RoleModule],
+    
+  AuthModule, UserModule, RoleModule ,],
   controllers: [AppController],
   providers: [AppService],
 })

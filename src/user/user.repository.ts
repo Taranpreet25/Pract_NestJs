@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from 'src/entity/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { v4 as uuid } from 'uuid';
+import { ProfilePicDto } from 'src/auth/dto/profile-pic.dto';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -24,7 +25,8 @@ export class UserRepository extends Repository<User> {
     } = createUserDto;
 
     //hash the password
-    const salt = await bcrypt.genSalt();
+    const salt = bcrypt.genSalt();
+    console.log(salt);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = this.create({
@@ -86,6 +88,7 @@ export class UserRepository extends Repository<User> {
     
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
+    const profile_pic = user.profilePic;
 
     const userac = this.create({
       userId: uuid(),
@@ -99,6 +102,7 @@ export class UserRepository extends Repository<User> {
       role_id: role_id,
       createdBy:user.userId,
       createdDate: new Date(),
+      profilePic: profile_pic,
     });
     try {
       await this.save(userac);
